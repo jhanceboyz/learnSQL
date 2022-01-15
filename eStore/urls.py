@@ -22,6 +22,6 @@ urlpatterns = [
     path("tickets/", views.tickets, name="tickets"),
     path("maketicket/", views.maketicket, name="maketicket"),
     path("<int:ticketID>", views.ticketdetails, name="ticketdetails"),
-    #path("<str:ticketID>/searchticket", views.searchticket, name="searchticket")
+    path("searchticket", views.searchticket, name="searchticket")
 
 ]

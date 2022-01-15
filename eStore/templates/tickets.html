@@ -3,6 +3,11 @@
 
 
 <h1 style="text-align: center;">TICKETS</h1>
+<form action="{%url 'searchticket' %}" method="post">
+  {% csrf_token %}
+  {{Newform}}
+  <button type="submit">Go</button>
+</form>
 <table class="table table-striped">
     <thead>
       <tr>
@@ -13,11 +18,7 @@
         <th scope="col">Date</th>
         <th scope="col">Time</th>
         <th scope="col">
-          <form action="" method="post">
-            {% csrf_token %}
-            <input type="text" name="ticketID" id="ticketID" placeholder="Search Customer">
-            <input type="button" value="Go">
-          </form>
+
         </th>
       </tr>
     </thead>

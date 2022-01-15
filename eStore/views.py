@@ -1,6 +1,12 @@
+
+from django.forms import CharField, forms
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import Ticket
+from django import forms
+
+class Newform(forms.Form):
+    searchticket = forms.CharField(label="Search")
 
 # Create your views here.
 
@@ -9,13 +15,20 @@ def homepage(request):
 
 def tickets(request):
         return render(request, 'tickets.html' ,{
-            "Tickets": Ticket.objects.all()
+            "Tickets": Ticket.objects.all(),
+            "Newform": Newform
         })
 
-def searchticket(request, ticketID):
+def searchticket(request):
     if request.method == 'POST':
         print("WORKING ------")
-        print(ticketID)
+        print(request.POST)
+        form = Newform(request.POST)
+        if form.is_valid():
+            ticketID = form.cleaned_data["searchticket"]
+            print(Ticket.objects.get(pk= ticketID))
+            print("Finally")
+            print(ticketID)
     else:
         return render(request, 'tickets.html' ,{
             "Tickets": Ticket.objects.all()
