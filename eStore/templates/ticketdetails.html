@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h2 style="background-color: rgb(224, 235, 224); text-align: center;">Device status :- {{ticketdata.status}}</h2>
+    <h1>Your ticket number is :- {{ticketdata.number}}</h1>
+    <h2>Customer name :- {{ticketdata.customer.name}}</h2>
+    <h2>Device registered :- {{ticketdata.customer.device}}</h2>
+    <h2>Repair notes:- {{ticketdata.description}}</h2>
+    <h2></h2>
+{% endblock body %}

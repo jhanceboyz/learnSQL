@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+<h1 style="text-align: center;">TICKETS</h1>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>TicketID</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Device</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">
+          <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="ticketID" id="ticketID" placeholder="Search Customer">
+            <input type="button" value="Go">
+          </form>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for ticket in Tickets %}
+        <tr>
+            <td><form action="{%url 'ticketdetails' ticket.id %}" method="post"> {% csrf_token %}<button type="submit">{{ticket.number}}</button></form></td>
+            <td>{{ticket.customer.name}}</td>
+            <td>{{ticket.customer.phonenumber}}</td>
+            <td>{{ticket.customer.device}}</td>
+            <td>{{ticket.date}}</td>
+            <td>{{ticket.time}}</td>
+            <td>{{ticket.status}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock body %}
