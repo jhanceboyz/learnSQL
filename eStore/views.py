@@ -1,9 +1,6 @@
-
-from django.forms import CharField, forms
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from .models import Ticket,Fault,Customer
-from django import forms
 
 # Create your views here.
 
@@ -22,16 +19,16 @@ def searchticket(request):
             "data":data
         })
 
-def maketicket(request):
+def addcustomer(request):
     if request.method == 'POST':
          i = Customer(name= request.POST['name'],phonenumber= request.POST['phonenumber'],email= request.POST['email'],device= request.POST['device'])
          i.save()
-         return render(request , 'maketicket.html',{
+         return render(request , 'addcustomer.html',{
             "Tickets": Ticket.objects.all(),
             "Fault": Fault
                 })
     else:
-        return render(request, 'maketicket.html',{
+        return render(request, 'addcustomer.html',{
             "Tickets": Ticket.objects.all(),
             "Fault": Fault
     })

@@ -20,7 +20,7 @@ from . import views
 urlpatterns = [
     path("", views.homepage, name="homepage"),
     path("tickets/", views.tickets, name="tickets"),
-    path("maketicket/", views.maketicket, name="maketicket"),
+    path("addcustomer/", views.addcustomer, name="addcustomer"),
     path("<int:ticketID>", views.ticketdetails, name="ticketdetails"),
     path("searchticket", views.searchticket, name="searchticket")
 
