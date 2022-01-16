@@ -2,11 +2,8 @@
 from django.forms import CharField, forms
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from .models import Ticket
+from .models import Ticket,Fault,Customer
 from django import forms
-
-class Newform(forms.Form):
-    searchticket = forms.CharField(label="Search")
 
 # Create your views here.
 
@@ -15,27 +12,29 @@ def homepage(request):
 
 def tickets(request):
         return render(request, 'tickets.html' ,{
-            "Tickets": Ticket.objects.all(),
-            "Newform": Newform
+            "Tickets": Ticket.objects.all()
         })
 
 def searchticket(request):
     if request.method == 'POST':
-        print("WORKING ------")
-        print(request.POST)
-        form = Newform(request.POST)
-        if form.is_valid():
-            ticketID = form.cleaned_data["searchticket"]
-            print(Ticket.objects.get(pk= ticketID))
-            print("Finally")
-            print(ticketID)
-    else:
-        return render(request, 'tickets.html' ,{
-            "Tickets": Ticket.objects.all()
+        data = request.POST['searchticket']
+        return render(request, 'searchticket.html',{
+            "data":data
         })
 
 def maketicket(request):
-    return render(request, 'maketicket.html')
+    if request.method == 'POST':
+         i = Customer(name= request.POST['name'],phonenumber= request.POST['phonenumber'],email= request.POST['email'],device= request.POST['device'])
+         i.save()
+         return render(request , 'maketicket.html',{
+            "Tickets": Ticket.objects.all(),
+            "Fault": Fault
+                })
+    else:
+        return render(request, 'maketicket.html',{
+            "Tickets": Ticket.objects.all(),
+            "Fault": Fault
+    })
 
 
 def ticketdetails(request, ticketID):

@@ -3,11 +3,7 @@
 
 
 <h1 style="text-align: center;">TICKETS</h1>
-<form action="{%url 'searchticket' %}" method="post">
-  {% csrf_token %}
-  {{Newform}}
-  <button type="submit">Go</button>
-</form>
+
 <table class="table table-striped">
     <thead>
       <tr>
@@ -18,14 +14,18 @@
         <th scope="col">Date</th>
         <th scope="col">Time</th>
         <th scope="col">
-
+          <form action="{%url 'searchticket' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="searchticket" placeholder="Search a ticket">
+            <button type="submit">Go</button>
+          </form>
         </th>
       </tr>
     </thead>
     <tbody>
         {% for ticket in Tickets %}
         <tr>
-            <td><form action="{%url 'ticketdetails' ticket.id %}" method="post"> {% csrf_token %}<button type="submit">{{ticket.number}}</button></form></td>
+            <td><form action="{%url 'ticketdetails' ticket.id %}" method="post"> {% csrf_token %}<button type="submit">{{ticket.id}}</button></form></td>
             <td>{{ticket.customer.name}}</td>
             <td>{{ticket.customer.phonenumber}}</td>
             <td>{{ticket.customer.device}}</td>
