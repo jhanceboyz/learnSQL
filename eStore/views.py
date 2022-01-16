@@ -8,7 +8,10 @@ def homepage(request):
     return render(request, 'homepage.html')
 
 def tickets(request):
-        return render(request, 'tickets.html' ,{
+    if request.method == 'POST':
+        i = request.POST['searchticket']
+        return render(request, 'tickets.html', {"Tickets": Ticket.objects.filter(id = i)})
+    return render(request, 'tickets.html' ,{
             "Tickets": Ticket.objects.all()
         })
 

@@ -14,7 +14,7 @@
         <th scope="col">Date</th>
         <th scope="col">Time</th>
         <th scope="col">
-          <form action="{%url 'searchticket' %}" method="post">
+          <form action="{%url 'tickets' %}" method="post">
             {% csrf_token %}
             <input type="text" name="searchticket" placeholder="Search a ticket">
             <button type="submit">Go</button>
