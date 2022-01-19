@@ -1,6 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from .models import Ticket,Fault,Customer,Status
+from .models import Ticket,Fault,Customer,Status, Transaction
 
 # Create your views here.
 
@@ -24,7 +24,7 @@ def searchticket(request):
 
 def addcustomer(request):
     if request.method == 'POST':
-         i = Customer(name= request.POST['name'],phonenumber= request.POST['phonenumber'],email= request.POST['email'],device= request.POST['device'])
+         i = Customer(name= request.POST['name'],phonenumber= request.POST['phonenumber'],email= request.POST['email'])
          i.save()
          return render(request , 'addcustomer.html',{
             "Tickets": Ticket.objects.all(),
@@ -42,7 +42,6 @@ def ticketdetails(request, ticketID):
     print(ticketID)
     if request.method == 'POST':
         ticketdata = Ticket.objects.get(pk = ticketID)
-        print(ticketdata)
         return render(request, 'ticketdetails.html', {
             "ticketdata": ticketdata
         })
@@ -53,5 +52,15 @@ def maketicket(request):
         "Tickets":Ticket.objects.all(),
         "Fault": Fault.objects.all(),
         "Customer": Customer.objects.all(),
-        "Status": Status.objects.all()
+        "Status": Status.objects.all(),
+        "Transaction": Transaction.objects.all()
     })
+
+def searchcustomer(request):
+    return render(request, 'searchcustomer.html',{
+        "Customer": Customer.objects.all()
+    })
+
+
+def about(request):
+    return render(request,'about.html')

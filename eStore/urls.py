@@ -23,6 +23,8 @@ urlpatterns = [
     path("addcustomer/", views.addcustomer, name="addcustomer"),
     path("<int:ticketID>", views.ticketdetails, name="ticketdetails"),
     path("searchticket", views.searchticket, name="searchticket"),
-    path("maketicket/", views.maketicket, name="maketicket")
+    path("maketicket/", views.maketicket, name="maketicket"),
+    path("searchcustomer/", views.searchcustomer, name="searchcustomer"),
+    path("about/", views.about, name="about")
 
 ]

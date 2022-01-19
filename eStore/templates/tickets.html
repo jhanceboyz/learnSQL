@@ -4,7 +4,8 @@
 
 <h1 style="text-align: center;">TICKETS</h1>
 
-<table class="table table-striped">
+<div class="container">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>TicketID</th>
@@ -23,18 +24,22 @@
       </tr>
     </thead>
     <tbody>
-        {% for ticket in Tickets %}
-        <tr>
-            <td><form action="{%url 'ticketdetails' ticket.id %}" method="post"> {% csrf_token %}<button type="submit">{{ticket.id}}</button></form></td>
-            <td>{{ticket.customer.name}}</td>
-            <td>{{ticket.customer.phonenumber}}</td>
-            <td>{{ticket.customer.device}}</td>
-            <td>{{ticket.date}}</td>
-            <td>{{ticket.time}}</td>
-            <td style="color: rgb(63, 212, 63);">{{ticket.status}}</td>
+      {% for ticket in Tickets %}
+      <tr>
+        <td>
+          <form action="{%url 'ticketdetails' ticket.id %}" method="post"> {% csrf_token %}<button
+              type="submit">{{ticket.id}}</button></form>
+        </td>
+        <td>{{ticket.customer.name}}</td>
+        <td>{{ticket.customer.phonenumber}}</td>
+        <td>{{ticket.device}}</td>
+        <td>{{ticket.date}}</td>
+        <td>{{ticket.time}}</td>
+        <td style="color: rgb(63, 212, 63);">{{ticket.status}}</td>
 
-        </tr>
-        {% endfor %}
+      </tr>
+      {% endfor %}
     </tbody>
   </table>
+</div>
 {% endblock body %}
