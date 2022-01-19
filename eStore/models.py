@@ -6,7 +6,7 @@ class Customer(models.Model):
     name = models.CharField(max_length=64)
     email = models.EmailField( max_length=254)
     phonenumber = models.CharField(max_length=12)
-    device = models.CharField(max_length=50)
+    
 
     def __str__(self):
         return f"{self.name} {self.phonenumber}"
@@ -33,6 +33,7 @@ class Ticket(models.Model):
     time = models.TimeField(auto_now=True)
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     description = models.CharField(max_length=1000, blank=True, null=True)
+    device = models.CharField(max_length=50)
 
     def __str__(self):
         return f"{self.number}______{self.customer.name}______{self.customer.device}______{self.status}______{self.date}"

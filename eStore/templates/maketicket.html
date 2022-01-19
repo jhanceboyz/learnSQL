@@ -1,0 +1,206 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<style>
+
+</style>
+{% endblock head %}
+
+{% block body %}
+
+<div class="container">
+
+
+    <!-- HEADING -->
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-4 mx-auto p-0 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class=" text-center mt-0 ">
+                                        <h1>Add Ticket</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+    <!-- END HEADING -->
+
+    <!-- SECTION ONE -->
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_need">Please specify customer
+                                                *</label> <select id="form_need" name="need" class="form-control"
+                                                required="required" data-error="Please specify your need.">
+                                                <option value="" selected disabled>--Select Customer--</option>
+                                                {% for customer in Customer %}
+                                                <option>{{customer.name}} , {{customer.phonenumber}}</option>
+                                                {% endfor %}
+                                            </select> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_email"></label> <a
+                                                style="text-decoration: none; text-align: center;"
+                                                href="{% url 'addcustomer' %}" type="button" class="form-control">Add
+                                                New Customer</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+    <!-- END SECTION ONE -->
+
+    <!-- SECTION TWO -->
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_need">Please specify faulty part
+                                                *</label> <select id="form_need" name="need" class="form-control"
+                                                required="required" data-error="Please specify your need.">
+                                                <option value="" selected disabled>--Select Fault--</option>
+                                                {% for fault in Fault %}
+                                                <option>{{fault.name}}</option>
+                                                {% endfor %}
+                                            </select> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_email"></label> <a
+                                                style="text-decoration: none; text-align: center;"
+                                                href="{% url 'addcustomer' %}" type="button" class="form-control">Add
+                                                New Fault</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+    <!-- END SECTION TWO -->
+
+    <!-- SECTION THREE -->
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_need">Please specify ticket status
+                                                *</label> <select id="form_need" name="need" class="form-control"
+                                                required="required" data-error="Please specify your need.">
+                                                <option value="" selected disabled>--Select Status--</option>
+                                                {% for status in Status %}
+                                                <option>{{status.name}}</option>
+                                                {% endfor %}
+                                            </select> </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group"> <label for="form_email"></label> <a
+                                                style="text-decoration: none; text-align: center;"
+                                                href="{% url 'addcustomer' %}" type="button" class="form-control">Add
+                                                New Status</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+    <!-- END SECTION THREE -->
+
+    <!-- SECTION FOUR -->
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group"> <label for="form_name">Device Name and Model no
+                                                *</label> <input type="text" name="name" class="form-control"
+                                                placeholder="Please enter your Device Name and Model no"
+                                                required="required" data-error="Firstname is required."> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+    <!-- END SECTION FOUR -->
+
+    <!-- SECTION FIVE -->
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form id="contact-form" role="form">
+                            <div class="controls">
+                                <div class="row">
+                                    <div class="col-md-13">
+                                        <div class="form-group">
+                                            <label for="form_name">Technician's Notes *</label>
+                                            <textarea id="form_name" type="text" name="name" class="form-control"
+                                                placeholder="Please enter your firstname *" required="required"
+                                                data-error="Firstname is required." cols="20">
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+    <!-- END SECTION FIVE -->
+
+
+    <!-- SECTION FIVE -->
+    <div class="row ">
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-4 mb-4 mx-auto p-0 bg-light">
+                    <button type="button" class="btn btn-dark"><b>Submit</b></button>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+    </div>
+    <!-- END SECTION FIVE -->
+</div>
+
+{% endblock body %}

@@ -1,6 +1,6 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
-from .models import Ticket,Fault,Customer
+from .models import Ticket,Fault,Customer,Status
 
 # Create your views here.
 
@@ -46,3 +46,12 @@ def ticketdetails(request, ticketID):
         return render(request, 'ticketdetails.html', {
             "ticketdata": ticketdata
         })
+
+
+def maketicket(request):
+    return render(request, 'maketicket.html',{
+        "Tickets":Ticket.objects.all(),
+        "Fault": Fault.objects.all(),
+        "Customer": Customer.objects.all(),
+        "Status": Status.objects.all()
+    })
