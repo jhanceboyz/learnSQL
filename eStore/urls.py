@@ -25,6 +25,7 @@ urlpatterns = [
     path("searchticket", views.searchticket, name="searchticket"),
     path("maketicket/", views.maketicket, name="maketicket"),
     path("searchcustomer/", views.searchcustomer, name="searchcustomer"),
-    path("about/", views.about, name="about")
+    path("about/", views.about, name="about"),
+    path("addticket/", views.addticket, name="addticket")
 
 ]

@@ -48,6 +48,21 @@ def ticketdetails(request, ticketID):
 
 
 def maketicket(request):
+    if request.method == 'POST':
+        print(request.POST.get('customer',False))
+        print(request.POST.get('fault_data',False))
+        print(request.POST.get('status_data',False))
+        print(request.POST.get('amount_data',False))
+        print(request.POST.get('device_data',False))
+        print(request.POST.get('descriptiondata',False))
+
+        return render(request, 'maketicket.html',{
+        "Tickets":Ticket.objects.all(),
+        "Fault": Fault.objects.all(),
+        "Customer": Customer.objects.all(),
+        "Status": Status.objects.all(),
+        "Transaction": Transaction.objects.all()
+        })
     return render(request, 'maketicket.html',{
         "Tickets":Ticket.objects.all(),
         "Fault": Fault.objects.all(),
@@ -64,3 +79,25 @@ def searchcustomer(request):
 
 def about(request):
     return render(request,'about.html')
+
+def addticket(request):
+    if request.method == 'POST':
+        print(request.POST['customer'])
+        print(Customer.objects.get(pk = request.POST['customer']))
+        print(Fault.objects.get(pk = request.POST['fault']))
+        print(Status.objects.get(pk = request.POST['status']))
+        return render(request, 'addticket.html',{
+        "Tickets":Ticket.objects.all(),
+        "Fault": Fault.objects.all(),
+        "Customer": Customer.objects.all(),
+        "Status": Status.objects.all(),
+        "Transaction": Transaction.objects.all()
+        })
+
+    return render(request, 'addticket.html',{
+        "Tickets":Ticket.objects.all(),
+        "Fault": Fault.objects.all(),
+        "Customer": Customer.objects.all(),
+        "Status": Status.objects.all(),
+        "Transaction": Transaction.objects.all()
+    })
