@@ -86,6 +86,10 @@ def addticket(request):
         print(Customer.objects.get(pk = request.POST['customer']))
         print(Fault.objects.get(pk = request.POST['fault']))
         print(Status.objects.get(pk = request.POST['status']))
+        print(Transaction.objects.get(pk = request.POST['transaction']))
+        print(request.POST['amount'])
+        print(request.POST['device'])
+        print(request.POST['description'])
         return render(request, 'addticket.html',{
         "Tickets":Ticket.objects.all(),
         "Fault": Fault.objects.all(),

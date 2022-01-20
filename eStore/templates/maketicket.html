@@ -47,7 +47,6 @@
                                         <div class="form-group"> <label for="form_need">Please specify customer
                                                 *</label> <select name="customer" class="form-control"
                                                 required="required" data-error="Please specify your need.">
-                                                <option value="" selected disabled>--Select Customer--</option>
                                                 {% for customer in Customer %}
                                                 <option value="{{customer.id}}">{{customer.name}} ,
                                                     {{customer.phonenumber}}</option>
@@ -83,7 +82,6 @@
                                         <div class="form-group"> <label for="form_need">Please specify faulty part
                                                 *</label> <select name="fault_data" class="form-control"
                                                 required="required" data-error="Please specify your need.">
-                                                <option value="" selected disabled>--Select Fault--</option>
                                                 {% for fault in Fault %}
                                                 <option value="{{fault.id}}">{{fault.name}}</option>
                                                 {% endfor %}
@@ -118,7 +116,6 @@
                                         <div class="form-group"> <label for="form_need">Please specify ticket status
                                                 *</label> <select name="status_data" class="form-control"
                                                 required="required" data-error="Please specify your need.">
-                                                <option value="" selected disabled>--Select Status--</option>
                                                 {% for status in Status %}
                                                 <option value="{{status.id}}">{{status.name}}</option>
                                                 {% endfor %}
@@ -150,7 +147,7 @@
                             <div class="controls">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <input type="text" class="form-control" id="specificSizeInputName"
+                                        <input type="text" class="form-control" name="amount"
                                             placeholder="Amount">
                                     </div>
                                     <div class="col-sm-3">
@@ -162,7 +159,7 @@
                                     </div>
                                     <div class="col-auto mt-2">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
+                                            <input class="form-check-input" type="checkbox">
                                             <label class="form-check-label" for="autoSizingCheck2">
                                                 Paid Full
                                             </label>

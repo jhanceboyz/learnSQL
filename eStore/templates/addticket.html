@@ -95,6 +95,25 @@ input[type=submit] {
             </select>
         </div>
         <div class="row mt-5">
+          <select name="transaction">
+              {% for transaction in Transaction %}
+              <option value="{{transaction.id}}">{{transaction.type}}</option>
+              {% endfor %}
+          </select>
+        </div>
+        <div class="row mt-5">
+          <h5>Enter amount</h5>
+          <input type="text" name="amount" >
+        </div>
+        <div class="row mt-5">
+          <h5>Enter device name and model no </h5>
+          <input type="text" name="device" >
+        </div>
+        <div class="row mt-5">
+          <h5>Enter description</h5>
+          <input type="text" name="description" >
+        </div>
+        <div class="row mt-5">
             <input type="submit" value="Submit">
         </div>
     </form>
