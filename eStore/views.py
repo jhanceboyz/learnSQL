@@ -1,5 +1,8 @@
+from os import name
+from django.http import HttpResponseRedirect
 from django.http.response import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
 from .models import Ticket,Fault,Customer,Status, Transaction
 
 # Create your views here.
@@ -49,10 +52,10 @@ def ticketdetails(request, ticketID):
 
 def maketicket(request):
     if request.method == 'POST':
-        print(request.POST.get('customer',False))
-        print(request.POST.get('fault_data',False))
-        print(request.POST.get('status_data',False))
-        print(request.POST.get('amount_data',False))
+        print(Customer.objects.get(pk = request.POST.get('customer',False)))
+        print(Fault.objects.get(pk =  request.POST.get('fault_data',False)))
+        print(Status.objects.get(pk =  request.POST.get('status_data',False)))
+        print(Transaction.objects.get(pk = request.POST.get('amount_data',False)))
         print(request.POST.get('device_data',False))
         print(request.POST.get('descriptiondata',False))
 
@@ -80,28 +83,18 @@ def searchcustomer(request):
 def about(request):
     return render(request,'about.html')
 
-def addticket(request):
+def addfault(request):
     if request.method == 'POST':
-        print(request.POST['customer'])
-        print(Customer.objects.get(pk = request.POST['customer']))
-        print(Fault.objects.get(pk = request.POST['fault']))
-        print(Status.objects.get(pk = request.POST['status']))
-        print(Transaction.objects.get(pk = request.POST['transaction']))
-        print(request.POST['amount'])
-        print(request.POST['device'])
-        print(request.POST['description'])
-        return render(request, 'addticket.html',{
-        "Tickets":Ticket.objects.all(),
-        "Fault": Fault.objects.all(),
-        "Customer": Customer.objects.all(),
-        "Status": Status.objects.all(),
-        "Transaction": Transaction.objects.all()
-        })
+        print(request.POST['fault'])
+        i = Fault(name = request.POST['fault'])
+        i.save()
+        return HttpResponseRedirect(reverse('maketicket'))
+    return render(request, 'addfault.html')
 
-    return render(request, 'addticket.html',{
-        "Tickets":Ticket.objects.all(),
-        "Fault": Fault.objects.all(),
-        "Customer": Customer.objects.all(),
-        "Status": Status.objects.all(),
-        "Transaction": Transaction.objects.all()
-    })
+def addstatus(request):
+    if request.method == 'POST':
+        print(request.POST['status'])
+        i = Status(name = request.POST['status'])
+        i.save()
+        return HttpResponseRedirect(reverse('maketicket'))
+    return render(request, 'addstatus.html')
