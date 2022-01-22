@@ -44,5 +44,5 @@ class Ticket(models.Model):
     amount = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.number}______{self.customer.name}______{self.customer.device}______{self.status}______{self.date}"
+        return f"{self.customer.name}______{self.device}______{self.status}______{self.date}"
 

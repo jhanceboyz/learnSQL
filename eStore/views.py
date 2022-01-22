@@ -49,13 +49,6 @@ def ticketdetails(request, ticketID):
 
 def maketicket(request):
     if request.method == 'POST':
-        print(Customer.objects.get(pk = request.POST.get('customer',False)))
-        print(Fault.objects.get(pk =  request.POST.get('fault_data',False)))
-        print(Status.objects.get(pk =  request.POST.get('status_data',False)))
-        print(Transaction.objects.get(pk = request.POST.get('amount_data',False)))
-        print(request.POST.get('device_data',False))
-        print(request.POST.get('descriptiondata',False))
-        print(request.POST.get('amount',False))
         i = Ticket(customer = Customer.objects.get(pk = request.POST.get('customer',False)),
                     fault = Fault.objects.get(pk =  request.POST.get('fault_data',False)),
                     status = Status.objects.get(pk =  request.POST.get('status_data',False)),
@@ -107,6 +100,10 @@ def addstatus(request):
 
 
 def adddata(request):
-    i = Transaction(type = 'Cash')
-    i.save()
-    return HttpResponse("Data added")
+    Data =Ticket.objects.all()
+    result = 0
+    for data in Data:
+        result = data.amount + result
+        print(data.amount)
+    print("Total is ", result)
+    return render(request, 'about.html')
