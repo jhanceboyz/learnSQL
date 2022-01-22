@@ -27,14 +27,13 @@ class Status(models.Model):
 
 class Transaction(models.Model):
     type = models.CharField(max_length=50)
-    amount = models.IntegerField()
+
 
     def __str__(self):
-        return f"{self.type}______{self.amount}"
+        return f"{self.type}"
 
 class Ticket(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
-    number = models.IntegerField()
     fault = models.ForeignKey(Fault, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
     time = models.TimeField(auto_now=True)
@@ -42,6 +41,7 @@ class Ticket(models.Model):
     description = models.CharField(max_length=1000, blank=True, null=True)
     device = models.CharField(max_length=50)
     transaction = models.ForeignKey(Transaction,on_delete=models.CASCADE, blank=True, null=True)
+    amount = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.number}______{self.customer.name}______{self.customer.device}______{self.status}______{self.date}"

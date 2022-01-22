@@ -29,10 +29,7 @@ def addcustomer(request):
     if request.method == 'POST':
          i = Customer(name= request.POST['name'],phonenumber= request.POST['phonenumber'],email= request.POST['email'])
          i.save()
-         return render(request , 'addcustomer.html',{
-            "Tickets": Ticket.objects.all(),
-            "Fault": Fault
-                })
+         return HttpResponseRedirect(reverse('maketicket'))
     else:
         return render(request, 'addcustomer.html',{
             "Tickets": Ticket.objects.all(),
@@ -58,6 +55,15 @@ def maketicket(request):
         print(Transaction.objects.get(pk = request.POST.get('amount_data',False)))
         print(request.POST.get('device_data',False))
         print(request.POST.get('descriptiondata',False))
+        print(request.POST.get('amount',False))
+        i = Ticket(customer = Customer.objects.get(pk = request.POST.get('customer',False)),
+                    fault = Fault.objects.get(pk =  request.POST.get('fault_data',False)),
+                    status = Status.objects.get(pk =  request.POST.get('status_data',False)),
+                    description = request.POST.get('descriptiondata',False),
+                    device = request.POST.get('device_data',False),
+                    transaction = Transaction.objects.get(pk = request.POST.get('amount_data',False)),
+                    amount = request.POST.get('amount',False))
+        i.save()
 
         return render(request, 'maketicket.html',{
         "Tickets":Ticket.objects.all(),
@@ -98,3 +104,9 @@ def addstatus(request):
         i.save()
         return HttpResponseRedirect(reverse('maketicket'))
     return render(request, 'addstatus.html')
+
+
+def adddata(request):
+    i = Transaction(type = 'Cash')
+    i.save()
+    return HttpResponse("Data added")

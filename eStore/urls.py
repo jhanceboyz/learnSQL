@@ -27,5 +27,6 @@ urlpatterns = [
     path("searchcustomer/", views.searchcustomer, name="searchcustomer"),
     path("about/", views.about, name="about"),
     path("addstatus/", views.addstatus, name="addstatus"),
-    path("addfault/", views.addfault, name="addfault")
+    path("addfault/", views.addfault, name="addfault"),
+    path("adddata/", views.adddata, name="adddata")
 ]
