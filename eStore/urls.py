@@ -28,5 +28,7 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path("addstatus/", views.addstatus, name="addstatus"),
     path("addfault/", views.addfault, name="addfault"),
-    path("adddata/", views.adddata, name="adddata")
+    path("adddata/", views.adddata, name="adddata"),
+    path("loginview/", views.loginview, name="loginview"),
+    path("logoutview/", views.logoutview, name="logoutview")
 ]

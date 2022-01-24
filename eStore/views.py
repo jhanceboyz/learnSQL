@@ -1,4 +1,4 @@
-from os import name
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.http.response import HttpResponse
 from django.shortcuts import render
@@ -74,9 +74,12 @@ def maketicket(request):
     })
 
 def searchcustomer(request):
-    return render(request, 'searchcustomer.html',{
-        "Customer": Customer.objects.all()
-    })
+    if not request.user.is_authenticated:
+        return render(request, 'searchcustomer.html',{
+            "Customer": Customer.objects.all()
+        })
+    else:
+        return HttpResponseRedirect(reverse('homepage'))
 
 
 def about(request):
@@ -107,3 +110,21 @@ def adddata(request):
         print(data.amount)
     print("Total is ", result)
     return render(request, 'about.html')
+
+def loginview(request):
+    if request.method == 'POST':
+        username = request.POST['loginemail']
+        password = request.POST['loginpassword']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            print("Login Success")
+            login(request, user)
+            return HttpResponseRedirect(reverse('tickets'))
+        else:
+            print("Login Failed")
+    
+    return HttpResponseRedirect(reverse('homepage'))
+
+def logoutview(request):
+    logout(request)
+    return HttpResponse("LOGGED OUT")

@@ -33,7 +33,7 @@ class Transaction(models.Model):
         return f"{self.type}"
 
 class Ticket(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, blank=True, null=True, related_name="numberoftickets")
     fault = models.ForeignKey(Fault, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
     time = models.TimeField(auto_now=True)
