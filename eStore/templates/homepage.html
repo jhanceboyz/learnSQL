@@ -37,20 +37,11 @@
 
 
 <!-- LOGIN FORM -->
-<div class="container justify-content-lg-end" style= "float: right;">
-    <div class="container w-25" style="float: left;">
-        <h1 class="mt-5">Left panel</h1>
-    </div>
-    
-    <div class="container w-25 justify-content-lg-end" style= "float: right;">
-        <form action="{% url 'loginview' %}" method="post">
-            {% csrf_token %}
-            <div class="row mt-4"><h1>Login</h1></div>
-            <div class="row mt-2"><input class="form-control" required="required" type="email" name="loginemail" placeholder="Enter e-mail"></div>
-            <div class="row mt-2"><input class="form-control" required="required" type="password" name="loginpassword" placeholder="Enter password"></div>
-            <div class="row mt-2"><input class="btn btn-success" type="submit" value="Submit"></div>
-        </form>
-    </div>
+<div class="container text-center mt-5" style="text-align: center;">
+    <div class="row mt-5 text-center justify-content-center"  style="text-align: center;"><h1>Welcome -<h1 style="color: rgb(41, 124, 52);"> - {{request.user.first_name}}</h1></h1></div>
+    <div class="row justify-content-center"><h4>Your are Successfully logged into Website.</h4></div>
+    <div class="row justify-content-center"><h4>Please feel free to navigate through site.</h4></div>
+    <div class="row justify-content-center"><h4 style="color: red;">Enjoy :D</h4></div>
 </div>
 <!-- END LOGIN FORM -->
 {% endblock body %}

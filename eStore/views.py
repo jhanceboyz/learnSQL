@@ -1,12 +1,17 @@
+from os import kill
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from .models import Ticket,Fault,Customer,Status, Transaction
+from users import urls
+from django.views.decorators.cache import cache_control
+
 
 # Create your views here.
 
+@cache_control(no_cache=True, must_revalidate=True)
 def homepage(request):
     return render(request, 'homepage.html')
 
@@ -36,7 +41,6 @@ def addcustomer(request):
             "Fault": Fault
     })
 
-
 def ticketdetails(request, ticketID):
     print("WORKING")
     print(ticketID)
@@ -45,7 +49,6 @@ def ticketdetails(request, ticketID):
         return render(request, 'ticketdetails.html', {
             "ticketdata": ticketdata
         })
-
 
 def maketicket(request):
     if request.method == 'POST':
@@ -74,13 +77,12 @@ def maketicket(request):
     })
 
 def searchcustomer(request):
-    if not request.user.is_authenticated:
+    if request.user.is_authenticated:
         return render(request, 'searchcustomer.html',{
             "Customer": Customer.objects.all()
         })
     else:
         return HttpResponseRedirect(reverse('homepage'))
-
 
 def about(request):
     return render(request,'about.html')
@@ -100,7 +102,6 @@ def addstatus(request):
         i.save()
         return HttpResponseRedirect(reverse('maketicket'))
     return render(request, 'addstatus.html')
-
 
 def adddata(request):
     Data =Ticket.objects.all()
@@ -127,4 +128,7 @@ def loginview(request):
 
 def logoutview(request):
     logout(request)
-    return HttpResponse("LOGGED OUT")
+    return HttpResponsePermanentRedirect(reverse("navigate"))
+
+
+
