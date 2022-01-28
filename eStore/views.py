@@ -42,12 +42,11 @@ def addcustomer(request):
     })
 
 def ticketdetails(request, ticketID):
-    print("WORKING")
-    print(ticketID)
     if request.method == 'POST':
         ticketdata = Ticket.objects.get(pk = ticketID)
         return render(request, 'ticketdetails.html', {
-            "ticketdata": ticketdata
+            "ticketdata": ticketdata,
+            "Status": Status.objects.all()
         })
 
 def maketicket(request):
@@ -130,5 +129,12 @@ def logoutview(request):
     logout(request)
     return HttpResponsePermanentRedirect(reverse("navigate"))
 
+def changestatus(request):
+    if request.method == "POST":
+        changestatus = request.POST.get('status_data', False)
+        changeticket = request.POST.get('ticket_data', False)
+        Ticket.objects.select_for_update().filter(pk = changeticket).update(status= Status.objects.get(pk = changestatus))
+        return HttpResponseRedirect(reverse('tickets'))
 
+    
 

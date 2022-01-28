@@ -30,5 +30,6 @@ urlpatterns = [
     path("addfault/", views.addfault, name="addfault"),
     path("adddata/", views.adddata, name="adddata"),
     path("loginview/", views.loginview, name="loginview"),
-    path("logoutview/", views.logoutview, name="logoutview")
+    path("logoutview/", views.logoutview, name="logoutview"),
+    path("changestatus/", views.changestatus, name="changestatus")
 ]
