@@ -28,7 +28,7 @@
       <tr>
         <td>
           <form action="{%url 'ticketdetails' ticket.id %}" method="post"> {% csrf_token %}<button
-              type="submit">{{ticket.id}}</button></form>
+              type="submit" class="btn btn-outline-dark p-0 w-50">{{ticket.id}}</button></form>
         </td>
         <td>{{ticket.customer.name}}</td>
         <td>{{ticket.customer.phonenumber}}</td>

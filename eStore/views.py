@@ -1,3 +1,4 @@
+from datetime import date
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render
@@ -22,7 +23,7 @@ def tickets(request):
             i = request.POST['searchticket']
             return render(request, 'tickets.html', {"Tickets": Ticket.objects.filter(id = i)})
         return render(request, 'tickets.html' ,{
-                "Tickets": Ticket.objects.all()
+                "Tickets": Ticket.objects.all().order_by('date').reverse()[:10]
             })
     else:
             return render(request, 'Logout.html')
